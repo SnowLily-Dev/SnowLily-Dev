@@ -1,0 +1,14 @@
+if [[ -z "$1" ]];
+then
+        echo "E: No package specified!"
+        exit
+else
+        echo "Removing" $1"..."
+        sudo apt purge $1
+        sudo apt autoremove
+        sudo apt autoclean
+        sudo apt clean
+        sudo rm -rf /var/cache/apt/*
+        echo "Removal of "$1" completed and apt cache cleared!"
+
+fi
