@@ -1,4 +1,4 @@
-if [[ "$1" != "--nopackage" && "$1" != "-n" && "$1" != "-h" && "$1" != "--help" && "$1" != "-p" ]];
+if [[ "$1" != "--no-package" && "$1" != "-n" && "$1" != "-h" && "$1" != "--help" && "$1" != "-p" ]];
 then
 	echo $0: "E:" $1": Unknown flag!"
 	exit
@@ -7,10 +7,10 @@ then
         echo "E: No flag was specified!"
         exit
 
-elif [[ $1 = "--nopackage" ]];
+elif [[ $1 = "--no-package" ]];
 then
-	echo "--nopackage flag active!"
-	echo "Will only clear cache and execute apt autoremove!"
+	echo "--no-package flag active!"
+	echo $0 "will only clear apt package cache and execute apt autoremove!"
 	sudo apt autoremove
 	sudo apt autoclean
 	sudo apt clean
@@ -34,7 +34,7 @@ then
 	echo "cache with one easy command."
 	echo " "
 	echo "Usage:"
-	echo $0" [-h] [--help] [-n] [--nopackage] [-p <packages>]"
+	echo $0" [-h] [--help] [-n] [--no-package] [-p <packages>]"
 elif [[ "$1" = "-p" ]];
 then
 if [[ -z "$2" ]];
