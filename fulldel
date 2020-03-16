@@ -1,14 +1,53 @@
-if [[ -z "$1" ]];
+if [[ "$1" != "--nopackage" && "$1" != "-n" && "$1" != "-h" && "$1" != "--help" && "$1" != "-p" ]];
 then
-        echo "E: No package specified!"
+	echo $0: "E:" $1": Unknown flag!"
+	exit
+elif [[ -z "$1" ]];
+then
+        echo "E: No flag was specified!"
         exit
-else
-        echo "Removing" $1"..."
-        sudo apt purge $1
+
+elif [[ $1 = "--nopackage" ]];
+then
+	echo "--nopackage flag active!"
+	echo "Will only clear cache and execute apt autoremove!"
+	sudo apt autoremove
+	sudo apt autoclean
+	sudo apt clean
+	sudo rm -rf /var/cache/apt/*
+	echo "Finished!"
+
+elif [[ "$1" = "-n" ]];
+then
+        echo "-n flag active!"
+        echo "Will only clear cache and execute apt autoremove!"
         sudo apt autoremove
         sudo apt autoclean
         sudo apt clean
         sudo rm -rf /var/cache/apt/*
-        echo "Removal of "$1" completed and apt cache cleared!"
+        echo "Finished!"
 
+elif [[ "$1" = "--help" || "$1" = "-h" ]];
+then
+	echo $0":"
+	echo "Script for removing a package and clearing"
+	echo "cache with one easy command."
+	echo " "
+	echo "Usage:"
+	echo $0" [-h] [--help] [-n] [--nopackage] [-p <packages>]"
+elif [[ "$1" = "-p" ]];
+then
+if [[ -z "$2" ]];
+then
+	echo "E: -p: No packages were specified!"
+	exit
+else
+        echo "Removing" ${@:2}"..."
+        sudo apt -y purge ${@:2}
+        sudo apt -y autoremove
+        sudo apt autoclean
+        sudo apt clean
+        sudo rm -rf /var/cache/apt/*
+        echo "Removal of "${@:2}" completed and apt cache cleared!"
+fi
 fi
