@@ -1,12 +1,7 @@
 if [[ "$1" != "--no-package" && "$1" != "-n" && "$1" != "-h" && "$1" != "--help" && "$1" != "-p" ]];
 then
-	echo $0: "E:" $1": Unknown flag!"
+	echo $0": E: Unknown flag or no flag specified!"
 	exit
-elif [[ -z "$1" ]];
-then
-        echo "E: No flag was specified!"
-        exit
-
 elif [[ $1 = "--no-package" ]];
 then
 	echo "--no-package flag active!"
@@ -15,7 +10,7 @@ then
 	sudo apt autoclean
 	sudo apt clean
 	sudo rm -rf /var/cache/apt/*
-	echo "Finished!"
+	echo $0": Finished!"
 
 elif [[ "$1" = "-n" ]];
 then
@@ -25,7 +20,7 @@ then
         sudo apt autoclean
         sudo apt clean
         sudo rm -rf /var/cache/apt/*
-        echo "Finished!"
+        echo $0": Finished!"
 
 elif [[ "$1" = "--help" || "$1" = "-h" ]];
 then
@@ -48,6 +43,6 @@ else
         sudo apt autoclean
         sudo apt clean
         sudo rm -rf /var/cache/apt/*
-        echo "Removal of "${@:2}" completed and apt cache cleared!"
+        echo $0": Removal of "${@:2}" completed and apt cache cleared!"
 fi
 fi
