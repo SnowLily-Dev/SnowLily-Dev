@@ -21,6 +21,7 @@ Make sure to keep fulldel-Solus.tar.xz somewhere in your home folder and use the
 the archive to install fulldel!
 
 Code:
+
 mkdir ~/Documents/fulldel
 
 cp /path/to/fulldel-Solus.tar.xz ~/Documents/fulldel
