@@ -22,8 +22,13 @@ the archive to install fulldel!
 
 Code:
 mkdir ~/Documents/fulldel
+
 cp /path/to/fulldel-Solus.tar.xz ~/Documents/fulldel
+
 cd ~/Documents/fulldel
+
 tar -xf ./fulldel-Solus.tar.xz
+
 chmod 775 ./install
+
 ./install
